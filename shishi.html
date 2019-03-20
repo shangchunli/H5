@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <style>
+        #cont{
+            width:250px;
+            height: 40px; 
+        }
+        button{
+            width: 125px;
+            height: 35px;
+        }
+        #ser{
+            font-size: 16px;
+        }
+        li{
+            border:1px none;
+            background-color: gray;
+            list-style-type: none;
+            text-align: center;
+            float: left;
+            padding:10px;
+            margin-left:10px;
+            margin-top:10px;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" name="find" placeholder="请输入想查找的商品" id="cont">
+    <button onclick="saveStorage('cont');">搜索</button>
+    <p id="ser">最近搜索</p>
+    <ul id="add"></ul>
+</body>
+<script>
+    function saveStorage(id){
+        var texts = document.getElementById(id).value;
+        var time = new Date().getTime();
+        localStorage.setItem(time, texts);
+    }
+    loadStorage('add');
+    function loadStorage(id){
+        var target = document.getElementById(id);
+        for (var i=0; i < localStorage.length; i++) {
+            var stri=document.createElement("li");
+            target.appendChild(stri);
+            var key = localStorage.key(i);
+            var value = localStorage.getItem(key);
+            target.children[i].innerHTML += value;
+            
+        }
+    }
+</script>
+</html>
