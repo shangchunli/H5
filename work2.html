@@ -51,14 +51,20 @@
     function loadStorage(id){
         var result = '<ul>';
         for (var i = 0; i < localStorage.length; i++) {
-            var key = localStorage.key(i);
-            var value = localStorage.getItem(key);
+            var key1 = localStorage.key(i);
+            var value = localStorage.getItem(key1);
+            for(var j=0;j<localStorage.length;j++){
+                var key2 = localStorage.key(j);
+                var value2 = localStorage.getItem(key2);
+                if(value===value2 && i!=j){
+                    localStorage.removeItem(localStorage.key(j));
+                }
+            }
             result += '<li>' + value + '</li>';
         }
         var target = document.getElementById(id);
         target.innerHTML = result;
-
-    }
+\    }
     
     function clearStorage() {
         localStorage.clear();
