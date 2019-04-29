@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>刮奖</title>
+    <style>
+        div{ 	
+            width: 195px; 	
+            height: 97px; 	
+            color: black; 	
+            position: absolute; 	
+            text-align: center;    
+            line-height: 100px; 	
+            font-size: 18px; 	
+            font-weight: bold; 
+            border:1px solid red;
+            background: red;
+        }
+        #canvas{ 	
+            position: absolute; 
+        } 
+    </style>
+</head>
+<body>
+    <div>恭喜高中大奖！</div>
+    <canvas id="canvas" width="200" height="100"></canvas>
+</body>
+<script>
+    var canvas=document.getElementById("canvas");
+    var context=canvas.getContext("2d");
+    context.fillStyle="gray";
+    context.fillRect(0,0,200,100);
+    context.globalCompositeOperation="destination-out";
+    canvas.onmousedown=function(){            
+        canvas.onmousemove=function(e){           
+            context.beginPath();   
+            context.arc(e.pageX-canvas.offsetLeft,e.pageY-canvas.offsetTop,10,0,Math.PI*2); 
+            context.fillStyle='white';
+            context.fill(); 
+            context.closePath();
+            Judege();
+        }       
+    }        
+    canvas.onmouseup=function(){            
+        canvas.onmousemove=function(){ 
+
+        }        
+    }
+   
+   function Judege(){
+        var imgData=context.getImageData(0,0,200,100);
+        var data=imgData.data;
+        var length=data.length;
+        var num=0; 	
+        for (var i=0;i<length;i+=4) { 		
+            var alpha=data[i+3]; 	
+            if(alpha<10){
+                num++;
+            }
+        }
+        var percent=num/(length/4); 
+        if (percent>0.85){
+            alert("刮奖完成!");
+            context.clearRect(0,0,200,100);
+        }
+    }
+</script>
+</html>
