@@ -11,29 +11,37 @@
         width: 400px;
         height: 500px;
         box-shadow: 0 0 10px gray;
-        overflow: hidden;
     }
     img{
         position: absolute;
         overflow: hidden;
+        width: 400px;
+        height: 260px;
     }
-    .active{
-        overflow: hidden;        
-        transform: scale(1.5,1.5);    
+    #box:hover img{
+        transform: scale(1.5,1.5);  
+        overflow: hidden;
+    }
+    #top{
+        overflow: hidden;
     }
     #sha{
         position: absolute;
-        background:rgba(128,128,128,0.5);
-        display: none;
+        background:rgba(10, 1, 1, 0.568);  
+        transform: scale(0);
         height: 260px;
         width: 400px;
     }
-   
+    #box:hover #sha{
+        transform: scale(1);
+    }
+  
     #container{
         width: 400px;
         height: 200px;
         transition: transform 1s ease-in-out;
         z-index: 2;
+        margin-top:-270px;
     }
     #container:hover{
         transform: translateY(-100px);
@@ -104,8 +112,8 @@
 </head>
 <body>
     <div id='box'>
-            <div id="top">
-                <img src="zhanqiao.jpg" width="400" hegiht="400" alt="" >
+            <div style="overflow: hidden; width:400px; height: 270px;">
+                <img src="zhanqiao.jpg"  alt="" >
                 <div id="sha"></div>
                 <div id="date">15<span id="span1">五月</span></div>
             </div>
@@ -121,16 +129,4 @@
         
     </div>   
 </body>
-<script>
-var container=document.getElementById("container");
-var sha=document.getElementById("sha");
-var img=document.getElementsByTagName("img");
-container.onmouseover=function(){
-    sha.style.display="block";
-    
-}
-container.onmouseout=function(){
-    sha.style.display="none";
-}
-</script>
 </html>
