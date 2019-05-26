@@ -108,15 +108,26 @@
     h2{
         padding-top:20px;
     }
+    #big{
+        overflow: hidden;
+        transform: scale(1,1);
+        width: 400px;
+        height: 270px;
+    }
+    #box:hover #big{
+        transform: scale()
+    }
     </style>
 </head>
 <body>
     <div id='box'>
-            <div style="overflow: hidden; width:400px; height: 270px;">
-                <img src="zhanqiao.jpg"  alt="" >
-                <div id="sha"></div>
-                <div id="date">15<span id="span1">五月</span></div>
-            </div>
+        <div id="big">                
+            <img src="zhanqiao.jpg"  alt="" >
+            <div id="sha"></div>
+
+            <div id="date">15<span id="span1">五月</span></div>
+        </div>
+           
         <div id='container'>
             <div id="phto">照片</div>
             <div id="news">
